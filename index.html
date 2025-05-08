@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Oi WhatsApp</title>
+    <link rel="icon" type="image/png" href="https://imgur.com/a/o89iLYL">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 360px;
+            background: white;
+            border-radius: 12px;
+            padding: 40px 24px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            width: 64px;
+            height: 64px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            font-weight: bold;
+            margin: 0 auto 24px;
+        }
+        
+        h1 {
+            font-size: 24px;
+            font-weight: 300;
+            color: #41525d;
+            margin-bottom: 24px;
+            line-height: 1.3;
+        }
+        
+        .terms {
+            font-size: 14px;
+            color: #667781;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+        
+        .terms p {
+            margin-bottom: 8px;
+        }
+        
+        .learn-more {
+            color: #25D366;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .step {
+            font-size: 15px;
+            color: #667781;
+            margin: 24px 0;
+            line-height: 1.5;
+        }
+        
+        .button {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            padding: 14px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            overflow: hidden;
+        }
+        
+        .button:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+        }
+
+        .button:active {
+            transform: translateY(0);
+        }
+
+        .button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            z-index: 0;
+        }
+
+        .button:hover::after {
+            left: 100%;
+        }
+
+        /* Floating dots animation */
+        .floating-dots {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .dot {
+            position: absolute;
+            background-color: rgba(37, 211, 102, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); }
+            100% { transform: scale(1.05); box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        
+
+        /* Removed invalid CSS block */
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+        }
+        
+        .animation-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        /* Circular container */
+        .circle-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Enhanced background circle with gradient and subtle noise */
+        .background-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(74,222,128,0.03) 0%, rgba(16,185,129,0.1) 100%);
+            opacity: 0.8;
+            filter: blur(1px);
+            z-index: 0;
+        }
+        
+        /* Subtle noise texture */
+        .background-circle::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at center, transparent 0%, rgba(255,255,255,0.1) 100%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            border-radius: 50%;
+            mix-blend-mode: overlay;
+        }
+        
+        /* Multiple animated rings */
+        .ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid;
+            opacity: 0;
+            animation: ringPulse 12s infinite;
+        }
+        
+        .ring-1 {
+            width: 90%;
+            height: 90%;
+            border-color: rgba(74, 222, 128, 0.15);
+            animation-delay: 0s;
+        }
+        
+        .ring-2 {
+            width: 110%;
+            height: 110%;
+            border-color: rgba(16, 185, 129, 0.1);
+            animation-delay: 2s;
+        }
+        
+        .ring-3 {
+            width: 130%;
+            height: 130%;
+            border-color: rgba(34, 197, 94, 0.08);
+            animation-delay: 4s;
+        }
+        
+        @keyframes ringPulse {
+            0% { transform: scale(0.95); opacity: 0; }
+            50% { opacity: 0.3; }
+            100% { transform: scale(1.1); opacity: 0; }
+        }
+        
+        /* Central phone styling */
+        .central-phone {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 2px solid #10b981;
+            padding: 8px;
+            transform-style: preserve-3d;
+            animation: phoneFloat 6s ease-in-out infinite;
+        }
+        
+        @keyframes phoneFloat {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0) rotateZ(0deg); }
+            25% { transform: translate(-50%, -50%) translateY(-10px) rotateZ(1deg); }
+            75% { transform: translate(-50%, -50%) translateY(10px) rotateZ(-1deg); }
+        }
+        
+        .phone-screen {
+            width: 120px;
+            height: 220px;
+            border-radius: 12px;
+            background: linear-gradient(145deg, #f0fdf4, #dcfce7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 10px 15px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Phone header with app name */
+        .phone-header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .phone-header-text {
+            font-size: 10px;
+            font-weight: bold;
+            color: #10b981;
+        }
+        
+        .message-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #10b981, #34d399);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .message-icon svg {
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+        }
+        
+        .loading-bar {
+            height: 8px;
+            border-radius: 4px;
+            margin-top: 16px;
+        }
+        
+        .loading-bar-1 {
+            width: 48px;
+            background: linear-gradient(90deg, #10b981, #34d399);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .loading-bar-2 {
+            width: 64px;
+            background: linear-gradient(90deg, #86efac, #bbf7d0);
+            margin-top: 8px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        /* Typing indicator */
+        .typing-indicator {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 15px;
+            padding: 6px 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 80%;
+        }
+        
+        .typing-dots {
+            display: flex;
+            align-items: center;
+        }
+        
+        .typing-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: #10b981;
+            margin: 0 2px;
+            opacity: 0.6;
+        }
+        
+        .typing-dot:nth-child(1) {
+            animation: typingDot 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation: typingDot 1.4s infinite ease-in-out 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation: typingDot 1.4s infinite ease-in-out 0.4s;
+        }
+        
+        @keyframes typingDot {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+            30% { transform: translateY(-4px); opacity: 1; }
+        }
+        
+        /* Floating elements with depth */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid;
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+            z-index: 5;
+        }
+        
+        .floating-element:hover {
+            transform: scale(1.1) translateZ(10px);
+        }
+        
+        .border-green-300 { border-color: #86efac; }
+        .border-green-400 { border-color: #4ade80; }
+        .border-green-500 { border-color: #10b981; }
+        
+        .floating-element svg {
+            width: 50%;
+            height: 50%;
+            fill: none;
+            stroke: #10b981;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            .animation-container {
+                max-width: 400px;
+                height: 400px;
+            }
+            
+            .phone-screen {
+                width: 100px;
+                height: 180px;
+                padding: 15px 8px 12px;
+            }
+            
+            .phone-header-text {
+                font-size: 8px;
+            }
+            
+            .message-icon {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .loading-bar-1 {
+                width: 40px;
+            }
+            
+            .loading-bar-2 {
+                width: 52px;
+            }
+            
+            .typing-indicator {
+                padding: 4px 10px;
+                bottom: 8px;
+            }
+            
+            .typing-dot {
+                width: 4px;
+                height: 4px;
+                margin: 0 1.5px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .animation-container {
+                max-width: 300px;
+                height: 300px;
+            }
+            
+            .phone-screen {
+                width: 80px;
+                height: 150px;
+                padding: 12px 6px 10px;
+            }
+            
+            .phone-header-text {
+                font-size: 7px;
+            }
+            
+            .message-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .loading-bar {
+                height: 6px;
+                margin-top: 12px;
+            }
+            
+            .loading-bar-1 {
+                width: 32px;
+            }
+            
+            .loading-bar-2 {
+                width: 42px;
+                margin-top: 6px;
+            }
+            
+            .typing-indicator {
+                padding: 3px 8px;
+                bottom: 6px;
+            }
+            
+            .typing-dot {
+                width: 3px;
+                height: 3px;
+                margin: 0 1px;
+            }
+            
+            @keyframes typingDot {
+                0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+                30% { transform: translateY(-3px); opacity: 1; }
+            }
+        }
+        
+        /* For very small screens */
+        @media (max-width: 320px) {
+            .animation-container {
+                max-width: 250px;
+                height: 250px;
+            }
+            
+            .phone-screen {
+                width: 70px;
+                height: 130px;
+                padding: 10px 5px 8px;
+            }
+            
+            .phone-header-text {
+                font-size: 6px;
+            }
+            
+            .message-icon {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .loading-bar {
+                height: 5px;
+                margin-top: 10px;
+            }
+            
+            .loading-bar-1 {
+                width: 28px;
+            }
+            
+            .loading-bar-2 {
+                width: 36px;
+                margin-top: 5px;
+            }
+            
+            .typing-indicator {
+                padding: 2px 6px;
+                bottom: 5px;
+            }
+            
+            .typing-dot {
+                width: 2.5px;
+                height: 2.5px;
+                margin: 0 1px;
+            }
+            
+            @keyframes typingDot {
+                0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+                30% { transform: translateY(-2px); opacity: 1; }
+            }
+        }
+
+        /* Ensure container fits within viewport */
+        .container {
+            width: 90%;
+            max-width: 360px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        /* Prevent horizontal overflow */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Ensure animation container stays within viewport */
+        .animation-container {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+        }
+
+        /* Ensure circle container maintains aspect ratio */
+        .circle-container {
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        /* Adjust button for better mobile display */
+        .button {
+            max-width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        /* Improve text wrapping for better mobile display */
+        h1, .terms p {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">Oi</div>
+
+        <div class="animation-container">
+          <div class="circle-container">
+              <!-- Enhanced background elements -->
+              <div class="background-circle" id="backgroundCircle"></div>
+              <div class="ring ring-1"></div>
+              <div class="ring ring-2"></div>
+              <div class="ring ring-3"></div>
+              
+              <!-- Central phone -->
+              <div class="central-phone" id="centralPhone">
+                  <div class="phone-screen">
+                      <!-- Phone header -->
+                      <div class="phone-header">
+                          <div class="phone-header-text">Hey, let's chat!</div>
+                      </div>
+                      
+                      <!-- Message icon -->
+                      <div class="message-icon" id="messageIcon">
+                          <svg viewBox="0 0 24 24" width="24" height="24" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                          </svg>
+                      </div>
+
+                      
+                        <!-- Background elements -->
+                        <div class="bg-circle"></div>
+                        <div class="floating-dots" id="floatingDots"></div>
+                      
+                      <!-- Loading bars -->
+                      <div class="loading-bar loading-bar-1" id="loadingBar1"></div>
+                      <div class="loading-bar loading-bar-2" id="loadingBar2"></div>
+                      
+                      <!-- Typing indicator -->
+                      <div class="typing-indicator">
+                          <div class="typing-dots">
+                              <div class="typing-dot"></div>
+                              <div class="typing-dot"></div>
+                              <div class="typing-dot"></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+        <h1>Welcome to Oi WhatsApp</h1>
+        
+        <div class="terms">
+            <p class="description">
+                By signing up, you agree to WhatsApp's <a href="#">Privacy Policy</a> 
+                and <a href="#">Terms of Service</a>.
+            </p>
+          
+          
+            <br>
+           <p class="terms">
+            We use your information to create your account, deliver our services, 
+            and help keep WhatsApp safe and secure. In settings, you can access, 
+            manage, and delete your account information. <a href="#">Learn more</a>
+        </p>
+        </div>
+     
+        <button class="button">Agree & Continue</button>
+    </div>
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          // SVG icons
+          const icons = {
+              'message-circle': '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>',
+              'heart': '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>',
+              'thumbs-up': '<path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>',
+              'phone': '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>',
+              'video': '<path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>',
+              'image': '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline>',
+              'send': '<line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>',
+              'smile': '<circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line>',
+              'camera': '<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle>'
+          };
+
+          // Animation elements
+          const backgroundCircle = document.getElementById('backgroundCircle');
+          const centralPhone = document.getElementById('centralPhone');
+          const messageIcon = document.getElementById('messageIcon');
+          const loadingBar1 = document.getElementById('loadingBar1');
+          const loadingBar2 = document.getElementById('loadingBar2');
+          const container = document.querySelector('.circle-container');
+          
+          // Floating elements data
+          const floatingElements = [
+              { icon: 'message-circle', size: 40, color: 'border-green-400', position: { x: 0, y: -100 }, duration: 15000, radius: 120 },
+              { icon: 'heart', size: 36, color: 'border-green-500', position: { x: 100, y: -50 }, duration: 18000, radius: 140 },
+              { icon: 'thumbs-up', size: 32, color: 'border-green-300', position: { x: 100, y: 50 }, duration: 20000, radius: 160 },
+              { icon: 'phone', size: 38, color: 'border-green-400', position: { x: 0, y: 100 }, duration: 17000, radius: 130 },
+              { icon: 'video', size: 42, color: 'border-green-500', position: { x: -100, y: 50 }, duration: 19000, radius: 150 },
+              { icon: 'image', size: 34, color: 'border-green-300', position: { x: -100, y: -50 }, duration: 16000, radius: 170 },
+              { icon: 'send', size: 30, color: 'border-green-400', position: { x: 70, y: -120 }, duration: 22000, radius: 110 },
+              { icon: 'smile', size: 44, color: 'border-green-500', position: { x: -70, y: -120 }, duration: 21000, radius: 180 },
+              { icon: 'camera', size: 36, color: 'border-green-300', position: { x: -70, y: 120 }, duration: 23000, radius: 125 },
+              { icon: 'message-circle', size: 28, color: 'border-green-400', position: { x: 70, y: 120 }, duration: 24000, radius: 145 },
+              { icon: 'heart', size: 32, color: 'border-green-500', position: { x: 150, y: 0 }, duration: 25000, radius: 135 },
+              { icon: 'thumbs-up', size: 38, color: 'border-green-300', position: { x: -150, y: 0 }, duration: 26000, radius: 155 }
+          ];
+          
+          // Create floating elements
+          floatingElements.forEach((element, index) => {
+              const el = document.createElement('div');
+              el.className = `floating-element ${element.color}`;
+              
+              // Adjust size for responsive design
+              const size = getResponsiveSize(element.size);
+              el.style.width = `${size}px`;
+              el.style.height = `${size}px`;
+              
+              // Position relative to center
+              const centerX = container.offsetWidth / 2;
+              const centerY = container.offsetHeight / 2;
+              el.style.top = `${centerY + element.position.y * (container.offsetHeight / 500)}px`;
+              el.style.left = `${centerX + element.position.x * (container.offsetWidth / 500)}px`;
+              
+              const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+              svg.setAttribute('viewBox', '0 0 24 24');
+              svg.setAttribute('stroke-width', '2');
+              svg.setAttribute('fill', 'none');
+              svg.setAttribute('stroke-linecap', 'round');
+              svg.setAttribute('stroke-linejoin', 'round');
+              svg.innerHTML = icons[element.icon];
+              el.appendChild(svg);
+              
+              container.appendChild(el);
+              
+              // Start animation with delay
+              setTimeout(() => {
+                  animateFloatingElement(el, element);
+              }, index * 200);
+          });
+          
+          // Background circle animation
+          animateBackgroundCircle();
+          
+          // Central phone animation
+          animateCentralPhone();
+          
+          // Message icon animation
+          animateMessageIcon();
+          
+          // Loading bars animation
+          animateLoadingBars();
+          
+          // Handle window resize
+          window.addEventListener('resize', repositionElements);
+          
+          // Function to get responsive size based on screen width
+          function getResponsiveSize(baseSize) {
+              if (window.innerWidth <= 320) {
+                  return baseSize * 0.6;
+              } else if (window.innerWidth <= 480) {
+                  return baseSize * 0.7;
+              } else if (window.innerWidth <= 768) {
+                  return baseSize * 0.8;
+              } else {
+                  return baseSize;
+              }
+          }
+          
+          // Function to reposition elements on resize
+          function repositionElements() {
+              const floatingEls = document.querySelectorAll('.floating-element');
+              const centerX = container.offsetWidth / 2;
+              const centerY = container.offsetHeight / 2;
+              
+              floatingEls.forEach((el, index) => {
+                  const element = floatingElements[index];
+                  if (element) {
+                      // Update size
+                      const size = getResponsiveSize(element.size);
+                      el.style.width = `${size}px`;
+                      el.style.height = `${size}px`;
+                      
+                      // Update position
+                      el.style.top = `${centerY + element.position.y * (container.offsetHeight / 500)}px`;
+                      el.style.left = `${centerX + element.position.x * (container.offsetWidth / 500)}px`;
+                  }
+              });
+          }
+      });
+      
+      function animateBackgroundCircle() {
+          const circle = document.getElementById('backgroundCircle');
+          let rotate = 0;
+          
+          function animate() {
+              rotate += 0.05;
+              if (rotate >= 360) rotate = 0;
+              
+              circle.style.transform = `rotate(${rotate}deg)`;
+              requestAnimationFrame(animate);
+          }
+          
+          animate();
+      }
+      
+      function animateCentralPhone() {
+          const phone = document.getElementById('centralPhone');
+          let y = 0;
+          let direction = 0.08;
+          let rotateX = 0;
+          let rotateY = 0;
+          let rotateZ = 0;
+          
+          // Add subtle 3D tilt on mousemove
+          document.addEventListener('mousemove', (e) => {
+              const xPos = e.clientX / window.innerWidth - 0.5;
+              const yPos = e.clientY / window.innerHeight - 0.5;
+              rotateX = yPos * 5;
+              rotateY = -xPos * 5;
+          });
+          
+          function animate() {
+              y += direction;
+              if (y > 8 || y < -8) direction *= -1;
+              
+              // Add subtle random rotation
+              rotateZ += (Math.random() - 0.5) * 0.1;
+              
+              phone.style.transform = `translate(-50%, -50%) translateY(${y}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
+              requestAnimationFrame(animate);
+          }
+          
+          animate();
+      }
+      
+      function animateMessageIcon() {
+          const icon = document.getElementById('messageIcon');
+          let rotate = 0;
+          let pulseScale = 1;
+          let pulseDirection = 0.002;
+          
+          function animate() {
+              rotate += 0.5;
+              if (rotate >= 360) rotate = 0;
+              
+              // Pulsing effect
+              pulseScale += pulseDirection;
+              if (pulseScale > 1.1 || pulseScale < 0.95) pulseDirection *= -1;
+              
+              icon.style.transform = `rotate(${rotate}deg) scale(${pulseScale})`;
+              requestAnimationFrame(animate);
+          }
+          
+          animate();
+      }
+      
+      function animateLoadingBars() {
+          const bar1 = document.getElementById('loadingBar1');
+          const bar2 = document.getElementById('loadingBar2');
+          let width1 = 48;
+          let width2 = 64;
+          let direction1 = 0.5;
+          let direction2 = -0.5;
+          let lastTime = Date.now();
+          
+          function animate() {
+              const now = Date.now();
+              const delta = now - lastTime;
+              lastTime = now;
+              
+              // First bar animation
+              width1 += direction1 * (delta / 16);
+              if (width1 > 72 || width1 < 48) direction1 *= -1;
+              
+              // Second bar animation (with delay)
+              if (delta > 500) {
+                  width2 += direction2 * (delta / 16);
+                  if (width2 > 64 || width2 < 48) direction2 *= -1;
+              }
+              
+              // Adjust for screen size
+              const scaleFactor = getBarScaleFactor();
+              bar1.style.width = `${width1 * scaleFactor}px`;
+              bar2.style.width = `${width2 * scaleFactor}px`;
+              requestAnimationFrame(animate);
+          }
+          
+          function getBarScaleFactor() {
+              if (window.innerWidth <= 320) {
+                  return 0.6;
+              } else if (window.innerWidth <= 480) {
+                  return 0.7;
+              } else if (window.innerWidth <= 768) {
+                  return 0.8;
+              } else {
+                  return 1;
+              }
+          }
+          
+          setTimeout(animate, 500);
+      }
+      
+      function animateFloatingElement(element, config) {
+          const startTime = Date.now();
+          const duration = config.duration;
+          const radius = config.radius * (window.innerWidth < 480 ? 0.7 : window.innerWidth < 768 ? 0.8 : 1);
+          let x = config.position.x;
+          let y = config.position.y;
+          let opacity = 0;
+          let scale = 0;
+          let rotate = 0;
+          let z = 0;
+          let zDirection = 0.1;
+          
+          function animate() {
+              const elapsed = Date.now() - startTime;
+              const progress = (elapsed % duration) / duration;
+              const angle = progress * Math.PI * 2;
+              
+              // Circular motion with slight eccentricity
+              const eccentricity = 0.9 + Math.sin(elapsed / 2000) * 0.1;
+              const newX = x + radius * Math.cos(angle) * eccentricity * (window.innerWidth / 500);
+              const newY = y + radius * Math.sin(angle) * eccentricity * (window.innerHeight / 500);
+              
+              // Opacity and scale (fade in/out)
+              if (progress < 0.1) {
+                  opacity = progress * 10;
+                  scale = progress * 10;
+              } else if (progress > 0.9) {
+                  opacity = (1 - progress) * 10;
+                  scale = (1 - progress) * 10;
+              } else {
+                  opacity = 1;
+                  scale = 1;
+              }
+              
+              // Rotation and depth
+              rotate = progress * 360;
+              z += zDirection;
+              if (z > 10 || z < -10) zDirection *= -1;
+              
+              // Add subtle pulsing
+              const pulse = 1 + Math.sin(elapsed / 500) * 0.1;
+              
+              // Get center position
+              const container = document.querySelector('.circle-container');
+              const centerX = container.offsetWidth / 2;
+              const centerY = container.offsetHeight / 2;
+              
+              element.style.transform = `
+                  translate(${newX}px, ${newY}px) 
+                  rotate(${rotate}deg) 
+                  scale(${scale * pulse})
+              `;
+              element.style.opacity = opacity;
+              
+              requestAnimationFrame(animate);
+          }
+          
+          animate();
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+            // Create floating dots
+            const floatingDots = document.getElementById('floatingDots');
+            const colors = [
+                'rgba(37, 211, 102, 0.1)',
+                'rgba(37, 211, 102, 0.15)',
+                'rgba(37, 211, 102, 0.2)'
+            ];
+            
+            for (let i = 0; i < 15; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                
+                // Random properties
+                const size = Math.random() * 10 + 5;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                
+                dot.style.width = `${size}px`;
+                dot.style.height = `${size}px`;
+                dot.style.left = `${posX}%`;
+                dot.style.top = `${posY}%`;
+                dot.style.backgroundColor = color;
+                dot.style.animationDuration = `${duration}s`;
+                dot.style.animationDelay = `${delay}s`;
+                
+                floatingDots.appendChild(dot);
+            }
+
+             // Button ripple effect
+             const button = document.querySelector('.button');
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Ripple effect
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple';
+                ripple.style.width = ripple.style.height = `${Math.max(button.offsetWidth, button.offsetHeight)}px`;
+                ripple.style.left = `${e.offsetX - ripple.offsetWidth/2}px`;
+                ripple.style.top = `${e.offsetY - ripple.offsetHeight/2}px`;
+                ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.pointerEvents = 'none';
+                
+                button.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                    // Here you would typically proceed to next screen
+                    alert('Proceeding to next step...');
+                }, 600);
+            });
+            
+            // Add ripple animation to style
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple {
+                    to { transform: scale(4); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+  </script>
+
+    
+</body>
+</html>
